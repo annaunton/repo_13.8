@@ -7,10 +7,12 @@ var server = http.createServer();
 
 server.on('request', function(request, response) {
 
-response.setHeader("Content-Type", "text/html; charset = utf-8");	
+	
 
 if (request.url === '/') {
-
+	
+	//response.setHeader("Content-Type", "text/html; charset = utf-8");
+	response.writeHead(200, {'Content-Type':'text/html; charset = utf-8'});
 
 	fs.readFile('./index.js', 'utf-8', function(err, data) { 
 		if(err) throw err;
@@ -25,7 +27,7 @@ if (request.url === '/') {
 		if(err) throw err;
 		//response.setHeader("Content-Type", "image/png");
 		response.writeHead(200,{'Content-type':'image/png'});
-		responce.write(content);
+		response.write(content);
         response.end();
 
 	});
